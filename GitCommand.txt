@@ -24,10 +24,10 @@
 		$ git commit -m "Git Command Summarize"
 		
 	1.7、commit可以一次提交很多文件，所以你可以多次add不同的文件，比如：
-			$ git add file1.txt
-			$ git add file2.txt file3.txt
-			$ git add file4.txt
-			$ git commit -m "add 4 files"	
+		$ git add file1.txt
+		$ git add file2.txt file3.txt
+		$ git add file4.txt
+		$ git commit -m "add 4 files"	
 	
 				/************************总结以上七点内容***************************************/		
 				初始化一个Git仓库，使用git init命令。
@@ -38,5 +38,9 @@
 				
 				第二步，使用命令git commit，完成。
 
-	1.8、
+	1.8、修改GitCommand.txt，运行git status命令查看结果：
+		$ git status
+		
+	1.9、git diff命令查看GitCommand.txt修改的内容：
+		$ git diff GitCommand.txt	
 
