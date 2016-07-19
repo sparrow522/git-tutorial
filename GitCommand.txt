@@ -1,0 +1,19 @@
+1、Git Command
+	1.1、配置每个终端的Name和Email地址。
+		$ git config --global user.name "Your Name"
+		$ git config --global user.email "Email@Example.com"
+		
+	1.2、创建版本库
+		$ mkdir GitTutorialLiuJiabin
+		$ cd GitTutorialLiuJiabin
+		$ pwd
+		/e/github/git/GitRepository/GitTutorialLiuJiabin  
+		
+	1.3、	git init命令把目录变成Git可以管理的仓库：
+		$ git init
+		Initialized empty Git repository in E:/github/git/GitRepository/GitTutorialLiuJiabin/.git/
+	
+	1.4、查看当前目录下的文件：
+		$ ls -ah
+		./  ../  .git/
+	1.5、git add 把文件添加到仓库	
