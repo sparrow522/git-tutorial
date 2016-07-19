@@ -1,9 +1,9 @@
 1、Git Command
-	1.1、配置每个终端的Name和Email地址。
+	1.1、配置每个终端的Name和Email地址:
 		$ git config --global user.name "Your Name"
 		$ git config --global user.email "Email@Example.com"
 		
-	1.2、创建版本库
+	1.2、创建版本库:
 		$ mkdir GitTutorialLiuJiabin
 		$ cd GitTutorialLiuJiabin
 		$ pwd
@@ -16,4 +16,27 @@
 	1.4、查看当前目录下的文件：
 		$ ls -ah
 		./  ../  .git/
-	1.5、git add 把文件添加到仓库	
+		
+	1.5、git add 把文件添加到仓库:
+		$ git add GitCommand.txt	
+	
+	1.6、	git commit提交文件到仓库
+		$ git commit -m "Git Command Summarize"
+		
+	1.7、commit可以一次提交很多文件，所以你可以多次add不同的文件，比如：
+			$ git add file1.txt
+			$ git add file2.txt file3.txt
+			$ git add file4.txt
+			$ git commit -m "add 4 files"	
+	
+				/************************总结以上七点内容***************************************/		
+				初始化一个Git仓库，使用git init命令。
+				
+				添加文件到Git仓库，分两步：
+				
+				第一步，使用命令git add <file>，注意，可反复多次使用，添加多个文件；
+				
+				第二步，使用命令git commit，完成。
+
+	1.8、
+
