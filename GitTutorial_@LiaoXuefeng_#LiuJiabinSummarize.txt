@@ -1,0 +1,196 @@
+﻿1、Git教程
+  	1.1、Git简介
+		Git是目前世界上最先进的分布式版本控制系统，没有之一。
+		版本控制系统，是一个能够自动记录每次所做的修改，并且团队可以协同进行项目的增删改查的软件。
+		1.1.1、Git的诞生
+			Linus两周时间用C编写了Git这个分布式版本控制系统。
+		1.1.2、集中式vs分布式
+			集中式版本控制系统，速度慢，必须联网。
+	1.2、安装Git
+		Git可以在Linux、Unix、Mac和Windows四大操作系统上正常运行。
+		在Windows上安装Git，在https://git-for-windows.github.io/下载，默认选项安装即可。
+		开始菜单Git->Git Bash，命令行输入：
+			$ git config --global user.name "Your Name"
+			$ git config --global user.email "Email@Example.com" 
+	1.3、创建版本库
+		版本库，即仓库，repository。
+		创建版本库：
+			$ mkdir GitTutorialLiuJiabin
+			$ cd GitTutorialLiuJiabin
+			$ pwd
+			/e/github/git/GitRepository/GitTutorialLiuJiabin  pwd显示当前目录，目录中不出现中文。
+		
+		通过git init命令把目录变成Git可以管理的仓库：
+			$ git init
+			Initialized empty Git repository in E:/github/git/GitRepository/GitTutorialLiuJiabin/.git/
+		Git仓库创建完成，而且是一个空仓库，当前目录创建了.git目录，这个目录是Git来跟踪管理版本库的，不要修改。
+		
+		查看当前目录下的文件：
+			$ ls -ah
+			./  ../  .git/
+		
+		把文件添加到版本库：
+			所有的版本控制系统，其实只能跟踪文本文件的改动，比如TXT文件，网页，所有的程序代码等等，
+			Git也不例外，版本控制系统可以告诉你每次的改动。
+			
+			然而图片、视频这些二进制文件，虽然也能由版本控制系统管理，但没法跟踪文件的变化，只能把二进制文件每次改动串起来，
+			也就是只知道图片从100KB改成了120KB，但到底改了啥，版本控制系统不知道，也没法知道。
+			
+			Microsoft的Word格式是二进制格式，因此，版本控制系统是没法跟踪Word文件的改动的。
+			如果要真正使用版本控制系统，就要以纯文本方式编写文件。
+			
+			文本是有编码的，建议使用标准的UTF-8编码，所有语言使用同一种编码，既没有冲突，又被所有平台所支持。
+			
+			第一步：
+			文件放到GitTutorialLiuJiabin目录下，git add 把文件添加到仓库：
+				$ git add GitCommand.txt
+			
+			第二步：
+			git commit提交文件到仓库：
+				$ git commit -m "Git Command Summarize"
+			
+			-m 后面输入的是本次提交的说明，可以输入任意内容，当然最好是有意义的说明，这样你就能从历史记录里方便地找到改动记录。
+			
+			可以不输入-m "xxx"，但是强烈不建议你这么干，因为输入说明对自己对别人阅读都很重要。
+			
+			git commit命令执行成功后返回提示信息，1个文件被改动（我们新添加的GitCommand.txt文件），插入了19行内容（GitCommand.txt有19行内容）。
+			
+			为什么Git添加文件需要add，commit一共两步呢，因为commit可以一次提交很多文件，所以你可以多次add不同的文件，比如：
+				$ git add file1.txt
+				$ git add file2.txt file3.txt
+				$ git commit -m "add 3 files"
+			
+	1.4、时光机穿梭
+		修改GitCommand.txt，运行git status命令查看结果：
+			$ git status
+			On branch master
+			Changes not staged for commit:
+	  			(use "git add <file>..." to update what will be committed)
+	  			(use "git checkout -- <file>..." to discard changes in working directory)
+	
+	        			modified:   GitCommand.txt
+	
+			no changes added to commit (use "git add" and/or "git commit -a")
+		
+		git status命令查看仓库当前的状态，上面的命令告诉我们，GitCommand.txt被修改过了，但还没有准备提交的修改。
+		
+		虽然Git告诉我们GitCommand.txt被修改了，但如果能看看具体修改了什么内容，自然是很好的。
+		
+		git diff命令查看GitCommand.txt修改的内容：
+			$ git diff GitCommand.txt
+			git diff顾名思义就是查看difference，显示的格式正是Unix通用的diff格式。
+		
+		把修改后的GitCommand.txt提交到仓库：
+			$ git add GitCommand.txt
+			在执行第二步git commit之前，我们再运行git status看看当前仓库的状态.。
+			$ git commit -m "Git Command Summarize modify1"
+			提交后，我们再用git status命令看看仓库的当前状态。
+		
+		小结：
+		要随时掌握工作区的状态，使用git status命令。
+		如果git status告诉你有文件被修改过，用git diff可以查看修改内容。
+		
+		1.4.1、版本回退
+			不断修改文件，并不断提交修改到版本库里，文件修改到一定程度程度时，可以保存为一个commit，一旦文件修改出错，
+			或者误删文件，都可以从最近一个commit恢复，继续工作，而不是前功尽弃。
+			
+			实际工作中，大脑不可能记得一个几千行的文件每次都做了什么修改，版本控制系统Git使用git log命令查看历史记录：
+				$ git log
+				commit f6ada5933018e8fa5c2e15a98f1cdcad68901aa7
+				Author: liujiabin1002 <1661558537@qq.com>
+				Date:   Tue Jul 19 23:45:17 2016 +0800
+	
+	    			Git Command Summarize modify2
+	
+				commit ab20549bcd8f28ed950d8ef14c618e9efe7e4efd
+				Author: liujiabin1002 <1661558537@qq.com>
+				Date:   Tue Jul 19 23:32:07 2016 +0800
+	
+	    				Git Command Summarize modify1
+	
+				commit 22a735d7a3c039e1a9b48979c0ca8f314cdb3b58
+				Author: liujiabin1002 <1661558537@qq.com>
+				Date:   Tue Jul 19 22:49:00 2016 +0800
+	
+	    				Git Command Summarize
+    				
+			git log命令显示从近到远的提交日志，git log添加参数--pretty=oneline，显示为一行：
+				$ git log --pretty=oneline
+				f6ada5933018e8fa5c2e15a98f1cdcad68901aa7 Git Command Summarize modify2
+				ab20549bcd8f28ed950d8ef14c618e9efe7e4efd Git Command Summarize modify1
+				22a735d7a3c039e1a9b48979c0ca8f314cdb3b58 Git Command Summarize
+			
+			git log输出参数解读：
+				commit id 版本号： 和SVN不一样，Git的commit id不是1，2，3……递增的数字，而是一个SHA1计算出来的
+				一个非常大的数字，用十六进制表示。因为Git是分布式的版本控制系统，避免多人在同一个版本库里工作时发生冲突。
+				提交作者：
+				提交日期：
+				提交说明：
+			
+			每提交一个新版本，Git将提交日志串成一条时间线，使用可视化工具查看Git历史，可以清楚地看到提交历史的时间线。
+			
+			将GitCommand.txt回退到Git Command Summarize modify1版本：
+			
+				首先，Git必须知道当前版本是哪个版本，在Git中，用HEAD表示当前版本，
+				也就是最新的提交f6ada5933018e8fa5c2e15a98f1cdcad68901aa7，上一个版本就是HEAD^，
+				上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100。
+			
+				其次，把当前版本Git Command Summarize modify2回退到上一个版本Git Command Summarize modify1，使用git reset命令：
+					$ git reset --hard HEAD^
+					HEAD is now at ab20549 Git Command Summarize modify1
+					
+					查看文件内容：
+						$ cat GitCommand.txt 
+					
+					回到未来指定的某个版本，向上找到指定的版本号，然后使用git reset命令。
+						回到Git Command Summarize modify2版本：
+						$ git reset --hard f6ada5933018e8fa5c2e15a98f1cdcad68901aa7
+						HEAD is now at f6ada59 Git Command Summarize modify2
+					
+					Git的版本回退速度非常快，因为Git在内部有个指向当前版本的HEAD指针，当你回退版本的时候，
+					Git仅仅是把HEAD从指向Git Command Summarize modify2：
+				
+				现在，你回退到了某个版本，某天你想恢复到新版本怎么办？找不到新版本的commit id怎么办？
+				在Git中，总是有办法解决各种各样的问题的。
+				当你用$ git reset --hard HEAD^回退到Git Command Summarize modify1版本时，
+				再想恢复到Git Command Summarize modify2，就必须找到Git Command Summarize modify2的commit id。
+				Git提供了一个命令git reflog用来记录你的每一次命令：
+					$ git reflog
+					f6ada59 HEAD@{0}: reset: moving to f6ada
+					ab20549 HEAD@{1}: reset: moving to HEAD^
+					f6ada59 HEAD@{2}: commit: Git Command Summarize modify2
+					ab20549 HEAD@{3}: commit: Git Command Summarize modify1
+					22a735d HEAD@{4}: commit (initial): Git Command Summarize
+
+			小结：
+				HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id。
+				穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。
+				要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。
+				
+		1.4.2、工作区和暂存区
+			Git和其他版本控制系统如SVN的一个不同之处就是有暂存区的概念。
+			工作区（Working Directory）：
+				就是电脑里能看到的目录，比如我的GitTutorialLiuJiabin文件夹就是一个工作区：
+			版本库（Repository）：
+				工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。
+				
+				Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支master，
+				以及指向master的一个指针叫HEAD。
+				
+				把文件往Git版本库里添加的时候，是分两步执行的：
+				第一步是用git add把文件添加进去，实际上就是把文件修改添加到暂存区；
+				第二步是用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支。
+				因为我们创建Git版本库时，Git自动为我们创建了唯一一个master分支，所以，现在，git commit就是往master分支上提交更改。
+				你可以简单理解为，需要提交的文件修改通通放到暂存区，然后，一次性提交暂存区的所有修改。
+				
+				
+				小结：
+					暂存区就像购物车，没到付款的时候你都不确定购物车里的东西全部都是要的，
+					每拿一件商品就付一次款，真麻烦。
+				
+				
+		1.4.3、管理修改
+		1.4.4、撤销修改
+		1.4.5、删除文件		
+
+
