@@ -1,4 +1,4 @@
-1、Git Command
+﻿1、Git Command
 	1.1、配置每个终端的Name和Email地址:
 		$ git config --global user.name "Your Name"
 		$ git config --global user.email "Email@Example.com"
@@ -43,4 +43,27 @@
 		
 	1.9、git diff命令查看GitCommand.txt修改的内容：
 		$ git diff GitCommand.txt	
+	
+	2.0、git log命令查看历史记录：
+		$ git log
 
+	2.1、git log添加参数--pretty=oneline，显示为一行：
+		$ git log --pretty=oneline
+
+	2.2、把当前版本回退到上一个版本：
+		$ git reset --hard HEAD^
+		
+	2.3、查看文件内容：
+		$ cat GitCommand.txt
+		
+	2.4、回到未来指定的某个版本，向上找到指定的版本号：
+		回到Git Command Summarize modify2版本：
+			$ git reset --hard f6ada5933018e8fa5c2e15a98f1cdcad68901aa7
+			HEAD is now at f6ada59 Git Command Summarize modify2		
+	
+	2.5、git reflog用来记录每一次命令
+		$ git reflog
+		
+	
+	
+	
