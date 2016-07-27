@@ -64,6 +64,9 @@
 	2.5、git reflog用来记录每一次命令
 		$ git reflog
 		
+	2.6、
 	
 	
-	
+
+
+
