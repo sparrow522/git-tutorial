@@ -38,7 +38,7 @@
 				
 				第二步，使用命令git commit，完成。
 
-	1.8、修改GitCommand.txt，运行git status命令查看结果：
+	1.8、修改GitCommand.txt，运行git status命令查看状态：
 		$ git status
 		
 	1.9、git diff命令查看GitCommand.txt修改的内容：
@@ -64,7 +64,54 @@
 	2.5、git reflog用来记录每一次命令
 		$ git reflog
 		
-	2.6、今天是七月二十八号
+	2.6、查看工作区和版本库里面最新版本的区别:
+		git diff HEAD -- GitCommand.txt
+	
+	2.7、修改后 未add（添加到暂存区） 需要撤销修改时：
+     	git checkout -- myfile.txt 或 手动删除工作区修改
+	
+	2.8、修改后 add了（未commit） 再次修改文件  要撤销第二次修改时：
+        git checkout -- myfile.txt (将暂存区恢复到工作区)
+        暂存区有第一次的修改需要commit
+	
+	2.9、修改后 add了（未commit），需要撤销修改时：
+        git reset HEAD myfile.txt (将暂存区修改删除)
+        此时工作区的修改还未撤销
+        git checkout -- myfile.txt (撤销工作区修改)
+	
+	3.0、修改后 add并commit了，需要撤销修改时：
+        git reset --hard HEAD^  (版本回退)
+	
+	3.1、从版本库中删除该文件，那就用命令git rm删掉，并且git commit：
+		$ git rm test.txt
+		$ git commit -m "remove test.txt"
+	
+	3.2、关联本地仓库：
+		$ git remote add origin git@gitbub.com:liujiabin1002/GitLearning.git
+	
+	3.3、把本地库的所有内容第一次推送到远程库上：
+		$ git push -u origin master
+	
+	3.4、从现在起，只要本地作了提交，就可以通过命令：
+		$ git push origin master
+		把本地master分支的最新修改推送至GitHub，现在，你就拥有了真正的分布式版本库。
+	
+	3.5、用命令git clone克隆一个本地库：
+		$ git clone git@github.com:liujiabin1002/DataStructure.git
+	
+	3.6、
+	
+	3.7、
+	
+	3.8、
+	
+	3.9、
+	
+	4.0、
+	
+	
+	
+	
 	
 	
 
