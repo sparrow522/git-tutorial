@@ -1,2 +1,2 @@
-# GitTutorialLiuJiabin
+# git tutorial
 Learning Git.
